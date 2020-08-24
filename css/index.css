@@ -7,7 +7,10 @@
   font-family: "Raleway", sans-serif;
   text-transform: uppercase;
 }
-
+header a:hover
+{
+color: rgb(40, 240, 40);
+}
 body {
   overflow: hidden;
   height: 90vh;
