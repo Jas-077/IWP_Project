@@ -3,64 +3,77 @@
         <title>
             Sign Up
         </title>
+        <link rel="icon" type="image/png" href="/Users/jasjeetsinghsiddhu/Desktop/IWP_Project/git_files/images/android-chrome-512x512.png">
+        <link rel="manifest" href="/Users/jasjeetsinghsiddhu/Desktop/IWP_Project/git_files/images/site.webmanifest">
+    
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+            integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
         <style>
             body{
-                background-image: url('back2.jpg'), linear-gradient(yellow,#0B0C10);
+                margin-top: 0px;
+                margin-left: 0px;
+                margin-right: 0px;
+                margin-bottom: 0px;
+                background-image: url('../images/back2.jpg'), linear-gradient(yellow,#0B0C10);
                 background-attachment: fixed, fixed;
-                background-size: cover, cover;
+                background-size: cover, cover;;
             }
-      header      ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #1F2833;
-  color: black;
+            .nav-container {
+  background: #1f2833;
 }
-header p
+#active
 {
+    color: lightgreen;
+}
+
+.navbar {
     position: relative;
-    margin-bottom: 10px;
-    color: white;
+    margin-top: 0px;
+  width: 100%;
+  height: 75px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background: #1f2833;
 }
-header li {
-  float: left;
-  position: relative;
-  margin-left: 100px;
-  font-size: 25px;
-  color: #FFF300;
+
+.navbar img {
+  border-radius: 50%;
+  border: 4px solid #45a29e;
+  margin: 2px;
 }
-       header     li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
+
+.navbar ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  list-style: none;
+}
+a {
   text-decoration: none;
-  color: #66FCF1 ;
-  font-family: American Typewriter;
+  color: #66fcf1;
 }
-
-header li a:hover:not(.active) {
-    background-color:#0B0C10;
-  color:#02FE0A ;
-  
-}
-
-#active {
-  background-color:#0B0C10;
-  color:#02FE0A ;
-}
-.sign
+header a
 {
-    position:relative;
-    margin-left: 450px;
-    margin-right: -100px;
+    font-size: 24px;
 }
 .logindex
 {
-    margin-top: 120px;
+    margin-top: 100px;
 width: 320px;
-height: 660px;
+height: 690px;
 background: #1F2833;
 color: #66FCF1;
 top: 52%;
@@ -124,49 +137,55 @@ color: #66FCF1;
 {
 color: #45A29E;
 }
-.foot
-{
-    width:100%;
-    height: 150px;
-    position: absolute;
-    margin-top: 53%;
-    background-color:#700808 ;
-}
-
-.foot p{
-    position: relative;
-    margin-left: 20px;
-    font-size: 16px;
-    color: yellowgreen;
-}
-.foot a 
-{
-    display: block;
-    font-size: 14px;
-  padding: 14px 16px;
-  text-decoration: none;
-  color: #FFF300;
-  font-family: American Typewriter;
+footer {
+  position: relative;
+  margin-top: 850px;
+  margin-bottom: 0px;
+  bottom: 0;
+  width: 100%;
+  height: 10vh;
+  background: #1f2833;
+  color: #66fcf1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
         </style>
     </head>
     <body>
         <header>
-            <p style="text-align: center; font-size: 36px; font-family: cursive;">Lock & Key</p>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="sign.html" class="sign" id="active">Sign Up</a></li>
-                    <li><a href="/Users/jasjeetsinghsiddhu/Desktop/IWP_Project/git_files/Log/log.html" >Log in</a></li>
-                </ul>
-            </nav>
-        </header>
+            <div class="nav-container">
+               <div class="navbar">
+                   <img src="../images/logo.PNG" alt="logo" width="100">
+                   <ul>
+                       <a href="">
+   
+                           <li>Home</li>
+                       </a>               
+                       <a href="" id="active">
+                           <li>Sign Up</li>
+                       </a>
+                       <a href="../html/log.html">
+                           <li>Log in</li>
+                       </a>
+                   </ul>
+               </div class="navbar">
+           </div>
+           </div>
+           </header>
         <main>
             <div class="logindex">
                 <form name="form1" action="log.php" onsubmit="return validate()" method="POST">
-                    <img src="avatar.png" class="avatar">
+                    <img src="../images/avatar.png" class="avatar"><br>
                     <p>Name (*):</p>
                     <input type="text" name="name"  minlength="1" maxlength="30" placeholder="Enter your Full name here" required pattern="[A-Z]{1}[ A-Za-z]{1,30}">
                     <p>Username (*):</p>
@@ -180,20 +199,19 @@ color: #45A29E;
                     <p>Confirm Password (*):</p>
                     <input type="password" name="pass2" minlength="8" maxlength="20" placeholder="Enter the above Password" required>
                     <input type="submit" name="" value="Sign Up"> 
-                    <a href="/Users/jasjeetsinghsiddhu/Desktop/IWP_Project/git_files/Log/log.html">Already have an account? Log in!</a><br>
+                    <a href="../html/log.html">Already have an account? Log in!</a><br>
                     <a href="forgot.html">Forgot Password? Click Here!</a>
                 </form>
             </div>
-            <footer>
-                <div class="foot">
-                    <p>Useful Links:</p>
-                    <ul >
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="about.html">About</a></li>
-                    </ul>
-                </div>
-            </footer>
         </main>
+        <footer>
+            <div class="copyright">Copyright © 2020 Lock&Key</div>
+            <div>
+                <a href="https://github.com/Jas-077/IWP_Project" target="_blank">
+                    <i class="fa fa-github fa-2x" aria-hidden="true"></i>
+                </a>
+            </div>
+        </footer>
     </body>
     <script>
         function validate()

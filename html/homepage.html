@@ -7,21 +7,21 @@
     <title>Lock N Key</title>
 
 
-    <link rel="icon" type="image/png" href="/images/android-chrome-512x512.png">
-    <link rel="manifest" href="/images/site.webmanifest">
+    <link rel="icon" type="image/png" href="../images/android-chrome-512x512.png">
+    <link rel="manifest" href="../images/site.webmanifest">
 
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="../css/index.css">
 </head>
 
 <body>
     <div class="nav-container">
         <div class="navbar">
-            <img src="/images/logo.PNG" alt="logo" width="100">
+            <img src="../images/logo.PNG" alt="logo" width="100">
             <ul>
-                <a href="">
+                <a href="" id="active">
                     <li>Home</li>
                 </a>               
                 <a href="">
@@ -44,7 +44,7 @@
         <div class="generator-container">
             <h1>Password Generator</h1>
             <div class="password-output">
-                <textarea name="" id="" readonly rows="1">Gxhr1342*&^@%</textarea>               
+                <textarea name="" id="ran" readonly rows="1"></textarea>               
                 <span class="fa fa-clipboard fa-2x copy" aria-hidden="true"></span>                
             </div>
             <button>build</button>
@@ -62,5 +62,15 @@
         </a>
     </div>
 </footer>
-
+<script>
+    var x=document.getElementById("ran");
+    var z=Math.floor((Math.random()*(15 - 12))+12);
+    var r="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ ~`!@#$%^&*()_-+={[}]|\:;'<,>.?/";
+    var t="";
+    for(var i=0;i<z;i++)
+    {
+         t+=r[Math.floor(Math.random() * r.length)];
+    }
+     x.innerHTML=t;
+</script>
 </html>
