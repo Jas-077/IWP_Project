@@ -1,465 +1,494 @@
 <html>
-    <head>
-        <title>
-            Generator
-        </title>
-        <link rel="icon" type="image/png" href="../images/android-chrome-512x512.png">
-        <link rel="manifest" href="../images/site.webmanifest">
-    
-        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
-            integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
-        <style>
-            body{
-            margin-top: 0px;
-                margin-left: 0px;
-                margin-right: 0px;
-                margin-bottom: 0px;
-                background-color: #000000;
-background-image: linear-gradient(45deg,rgb(3, 7, 17) 0%,#031832 50%, #0E2847 100%);
-background-size:400% 400%;
- animation: Gradient 15s ease infinite;
- animation-direction: alternate;
- animation-delay: 5s;
-color: white;
-overflow: scroll;
-}
- @keyframes Gradient{
-            0%{
-                background-position:0% 50%;
+<head>
+    <title>
+        Generator
+    </title>
+    <link rel="icon" type="image/png" href="../images/android-chrome-512x512.png">
+    <link rel="manifest" href="../images/site.webmanifest">
+
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="../css/index.css">
+
+    <style>
+        body {
+            background-color: #000000;
+            background-image: linear-gradient(45deg, rgb(3, 7, 17) 0%, #031832 50%, #0E2847 100%);
+            background-size: 400% 400%;
+            animation: Gradient 15s ease infinite;
+            animation-direction: alternate;
+            animation-delay: 5s;
+            color: white;
+        }
+
+        main{
+            overflow-y: scroll;
+            height: 80vh;
+            display: flex;            
+            justify-content: space-between;
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        .bgan1{
+            width: 30%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items:center;
+            justify-content: space-evenly;
+            padding: 4%;
+        }
+        
+        .form_contain {
+            position: relative;
+            width: 40%;
+            height: 600px;
+            padding:5%;
+        } 
+
+        @keyframes Gradient {
+            0% {
+                background-position: 0% 50%;
             }
 
-            50%{
-                background-position:100% 50%;
+            50% {
+                background-position: 100% 50%;
             }
 
-            100%{
+            100% {
                 background-position: 0% 50%;
             }
         }
-     header
-     {
-          height: 10vh;
-          width: 100%;
-          background-color: azure;
-     }
-.slidecontainer {
-  width: 100%;
-}
 
-.slider {
-    display:none;
-  -webkit-appearance: none;
-  width: 100%;
-  height: 15px;
-  border-radius: 5px;
-  background: #1f2833;
-  outline: none;
-  opacity: 0.7;
-  -webkit-transition: .2s;
-  transition: opacity .2s;
-}
+        .slidecontainer {
+            width: 100%;
+        }
 
-.slider:hover {
-  opacity: 1;
-}
+        .slider {
+            display: none;
+            -webkit-appearance: none;
+            width: 100%;
+            height: 15px;
+            border-radius: 5px;
+            background: #1f2833;
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+        }
 
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 25px;
-  height: 15px;
-  border-radius: 0%;
-  background: #45a29e;
-  cursor: pointer;
-}
+        .slider:hover {
+            opacity: 1;
+        }
 
-.slider::-moz-range-thumb {
-  width: 25px;
-  height: 15px;
-  border-radius: 0%;
-  background: #45a29e;
-  cursor: pointer;
-}
-.form_contain
-{
-    position: relative;
-    margin-left: 34.7%;
-    width: 34.7%;
-    height: 600px;
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 25px;
+            height: 15px;
+            border-radius: 0%;
+            background: #45a29e;
+            cursor: pointer;
+        }
 
-}
-footer {
-  position: initial;
-  margin-bottom: 0;
-  width: 100%;
-  height: 10vh;
-  background: #1f2833;
-  color: #66fcf1;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-main
-{
-    height: 80vh;
-}
-.form_contain input{
-width: 60%;
-margin-bottom:4%;
-}
-.form_contain input[type="text"], input[type="number"], input[type="password"]
-{
-border:none;
-border-bottom:1px solid #fff;
-background: transparent;
-outline: none;
-height: 40px;
-color: #45A29E;
-font-size: 16px;
-}
-#but1
-{
-    display: inline-block;
-    background-color: #031832;
-    color:#66fcf1;
-    height: 50px;
-    width: 40%;
-    font-size: 24px;
-    border: 1px solid;
-  padding: 10px;
-  cursor: pointer;
-  box-shadow: 5px 5px 3px rgb(2, 41, 88);
-}
-#but1:hover {background-color: #087575;color: #0E2847;}
+        .slider::-moz-range-thumb {
+            width: 25px;
+            height: 15px;
+            border-radius: 0%;
+            background: #45a29e;
+            cursor: pointer;
+        }      
 
-#but1:active {
-  background-color: #031832;
-  color: #66fcf1;
-  box-shadow: 0px 2px  rgb(2, 41, 88);
-  transform: translateY(2px);
-}
-#demo0
-{    display:none;
-    position: relative;
-    margin-top: -15px;
-}
-#demo
-{    
-    position:relative;
-    margin-left:340%;
-    color: aqua;
-}
-#demo2
-{
-    
-    color: aqua;
-}
-#demo3
-{
-    position: relative;
-    margin-left: 320%;
-    color: aqua;
-}
-#head
-{    display:none;
-margin-top: 0px;
-    font-family: american-typewriter;
-    color: #66fcf1;
-    font-size: 24px;
-}
-#pass2
-{   display:none;
-    margin-top: -5px;
-    width: 51%;
-    font-family:'Times New Roman', Times, serif;
-    color:rgb(30, 176, 243);
-    font-size: 19px;
-    border-bottom-style: dotted;
-    border-bottom-color: rgb(4, 238, 255);
-    border-bottom-width: 1px;
-}
-#strong
-{   display:none;
-    font-family: american-typewriter;
-    color: #66fcf1;
-    font-size: 24px;
-}
-#tab{
-    display:none;
-    width: 51%;
-    margin-top: 0%;
-}
- td
-{
-    border-style:solid;
-    border-width: 1px;
-    border-radius: 0%;
-    height: 10px;
-    width: 255px;
-    color: cyan;
-}
-#add
-{
-    display: inline-block;
-    background-color: #031832;
-    color:#66fcf1;
-    height: 55px;
-    width: 66%;
-    font-size: 28px;
-    border: 1px solid;
-  padding: 7px;
-  cursor: pointer;
-}
-#fade1
-{
-    position: relative;
-    float: left;
-    font-size: 60px;
-    color:#66fcf1;
-    font-family: sans-serif;
-    animation: an1 5s ease infinite alternate;
-    animation-delay: 1s;
-    opacity: 0.3;
-}
-#fade2{
-    position: relative;
-    float:left;
-    font-size: 40px;
-    margin-left: -10.1%;
-    margin-top: 15%;
-    color:#66fcf1;
-    font-family: 'Times New Roman', Times, serif;
-    animation: an2 5s ease infinite alternate;
-    animation-delay: 1s;
-}
-#fade3
-{
-    position: relative;
-    float:left;
-    font-size: 60px;
-    margin-left: -20%;
-    margin-top: 24%;
-    color:#66fcf1;
-    font-family:'Courier New', Courier, monospace;
-    animation: an3 5s ease infinite alternate;
-    animation-delay: 1s;
-    opacity: 0;
-}
-#fade4{
-    position: relative;
-    float:left;
-    font-size: 40px;
-    margin-left: -20%;
-    margin-top: 35.5%;
-    color:#66fcf1;
-    font-family: fantasy;
-    animation: an4 5s ease infinite alternate;
-    animation-delay: 1s;
-    opacity: .6;
-}
-#fade5{
-    position: relative;
-    float: right;;
-    font-size: 40px;
-    margin-right: 14%;
-    margin-top: 19.8%;
-    color:#66fcf1;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    animation: an5 4s ease infinite alternate;
-    animation-delay: 1s;
-    opacity: 1;
-}
-#fade6
-{
-    position: relative;
-    float: right;;
-    font-size: 60px;
-    margin-right: -14%;
-    margin-top: 32%;
-    color:#66fcf1;
-    font-family: cursive;
-    animation: an6 10s ease infinite alternate;
-    animation-delay: 1s;
-    opacity: 0.0;
-}
-#fade7 
-{
-    position: relative;
-    float: right;;
-    font-size: 60px;
-    margin-right: -24.30%;
-    margin-top: 3.9%;
-    color:#66fcf1;
-    font-family:'Comic Sans MS';
-    animation: an7 10s ease infinite alternate;
-    animation-delay: 1s;
-    opacity: 1;
-}
-@keyframes an1 {
-    0%
-    {
-        opacity: 0.3;
-    }
-    50%
-    {
-        opacity: 0.6;
-    }
-    100%
-    {
-        opacity: 0;
-    }
-}
-    @keyframes an2 {
-    0%
-    {
-        opacity: 1;
-    }
-    50%
-    {
-        opacity: 0;
-    }
-    100%
-    {
-        opacity: 1;
-    }
-}
-@keyframes an3 {
-    0%
-    {
-        opacity: 0;
-    }
-    25%
-    {
-        opacity: 0.5;
-    }
-    70%
-    {
-        opacity: 0;
-    }
-    100%
-    {
-        opacity: 1;
-    }
-}
-@keyframes an4 {
-    0%
-    {
-        opacity: .6;
-    }
-    20%
-    {
-        opacity: 0;
-    }
-    70%
-    {
-        opacity: .7;
-    }
-    100%
-    {
-        opacity: .4;
-    }
-}
-@keyframes an5{
-    0%
-    {
-        opacity: 1;
-    }
-    20%
-    {
-        opacity: 0.7;
-    }
-    50%
-    {
-        opacity: 0.4;
-    }
-    70%
-    {
-        opacity: .2;
-    }
-    100%
-    {
-        opacity: 0;
-    }
-}
-@keyframes an6{
-    0%
-    {
-        opacity: 0.0;
-    }
-    20%
-    {
-        opacity: 1;
-    }
-    50%
-    {
-        opacity: 0.0;
-    }
-    70%
-    {
-        opacity: 1;
-    }
-    100%
-    {
-        opacity: 0.0;
-    }
-}
-@keyframes an7{
-    0%
-    {
-        opacity: 1;
-    }
-    20%
-    {
-        opacity: 0;
-    }
-    50%
-    {
-        opacity: 1;
-    }
-    70%
-    {
-        opacity: 0;
-    }
-    100%
-    {
-        opacity: 1;
-    }
-}
-        </style>
-    </head>
-    <body>
-        <header>
-            
-        </header>
-        <main>
+        footer {
+            position: initial;
+        }
+
+        .form_contain input {
+            width: 60%;
+            margin-bottom: 4%;
+        }
+
+        .form_contain input[type="text"],
+        input[type="number"],
+        input[type="password"] {
+            border: none;
+            border-bottom: 1px solid #fff;
+            background: transparent;
+            outline: none;
+            height: 40px;
+            color: #45A29E;
+            font-size: 16px;
+        }
+
+        #but1 {
+            display: inline-block;
+            background-color: #031832;
+            color: #66fcf1;
+            height: 50px;
+            width: 40%;
+            font-size: 24px;
+            border: 1px solid;
+            padding: 10px;
+            cursor: pointer;
+            box-shadow: 5px 5px 3px rgb(2, 41, 88);
+        }
+
+        #but1:hover {
+            background-color: #087575;
+            color: #0E2847;
+        }
+
+        #but1:active {
+            background-color: #031832;
+            color: #66fcf1;
+            box-shadow: 0px 2px rgb(2, 41, 88);
+            transform: translateY(2px);
+        }
+
+        #demo0 {
+            display: none;
+            position: relative;
+            margin-top: -15px;
+        }
+
+        #demo {
+            position: relative;
+            margin-left: 340%;
+            color: aqua;
+        }
+
+        #demo2 {
+
+            color: aqua;
+        }
+
+        #demo3 {
+            position: relative;
+            margin-left: 320%;
+            color: aqua;
+        }
+
+        #head {
+            display: none;
+            margin-top: 0px;
+            font-family: american-typewriter;
+            color: #66fcf1;
+            font-size: 24px;
+        }
+
+        #pass2 {
+            display: none;
+            margin-top: -5px;
+            width: 51%;
+            font-family: 'Times New Roman', Times, serif;
+            color: rgb(30, 176, 243);
+            font-size: 19px;
+            border-bottom-style: dotted;
+            border-bottom-color: rgb(4, 238, 255);
+            border-bottom-width: 1px;
+        }
+
+        #strong {
+            display: none;
+            font-family: american-typewriter;
+            color: #66fcf1;
+            font-size: 24px;
+        }
+
+        #tab {
+            display: none;
+            width: 51%;
+            margin-top: 0%;
+        }
+
+        td {
+            border-style: solid;
+            border-width: 1px;
+            border-radius: 0%;
+            height: 10px;
+            width: 255px;
+            color: cyan;
+        }
+
+        #add {
+            display: inline-block;
+            background-color: #031832;
+            color: #66fcf1;
+            height: 55px;
+            width: 66%;
+            font-size: 28px;
+            border: 1px solid;
+            padding: 7px;
+            cursor: pointer;
+        }
+
+        #fade1 {
+            position: relative;
+            float: left;
+            font-size: 2rem;
+            color: #66fcf1;
+            font-family: sans-serif;
+            animation: an1 5s ease infinite alternate;
+            animation-delay: 1s;
+            opacity: 0.3;
+        }
+
+        #fade2 {
+            position: relative;
+            float: left;
+            font-size: 3rem;
+            margin-left: -10.1%;
+            margin-top: 15%;
+            color: #66fcf1;
+            font-family: 'Times New Roman', Times, serif;
+            animation: an2 5s ease infinite alternate;
+            animation-delay: 1s;
+        }
+
+        #fade3 {
+            position: relative;
+            float: left;
+            font-size: 2.5rem;
+            margin-left: -20%;
+            margin-top: 24%;
+            color: #66fcf1;
+            font-family: 'Courier New', Courier, monospace;
+            animation: an3 5s ease infinite alternate;
+            animation-delay: 1s;
+            opacity: 0;
+        }
+
+        #fade4 {
+            position: relative;
+            float: left;
+            font-size: 3rem;
+            margin-left: -20%;
+            margin-top: 35.5%;
+            color: #66fcf1;
+            font-family: fantasy;
+            animation: an4 5s ease infinite alternate;
+            animation-delay: 1s;
+            opacity: .6;
+        }
+
+        #fade5 {
+            position: relative;
+            float: right;
+            font-size: 3rem;
+            margin-right: 14%;
+            margin-top: 19.8%;
+            color: #66fcf1;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            animation: an5 4s ease infinite alternate;
+            animation-delay: 1s;
+            opacity: 1;
+        }
+
+        #fade6 {
+            position: relative;
+            float: right;
+            font-size: 2rem;
+            margin-right: -14%;
+            margin-top: 32%;
+            color: #66fcf1;
+            font-family: cursive;
+            animation: an6 10s ease infinite alternate;
+            animation-delay: 1s;
+            opacity: 0.0;
+        }
+
+        #fade7 {
+            position: relative;
+            float: right;
+            ;
+            font-size: 3rem;
+            margin-right: -24.30%;
+            margin-top: 3.9%;
+            color: #66fcf1;
+            font-family: 'Comic Sans MS';
+            animation: an7 10s ease infinite alternate;
+            animation-delay: 1s;
+            opacity: 1;
+        }
+
+        @keyframes an1 {
+            0% {
+                opacity: 0.3;
+            }
+
+            50% {
+                opacity: 0.6;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+        @keyframes an2 {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes an3 {
+            0% {
+                opacity: 0;
+            }
+
+            25% {
+                opacity: 0.5;
+            }
+
+            70% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes an4 {
+            0% {
+                opacity: .6;
+            }
+
+            20% {
+                opacity: 0;
+            }
+
+            70% {
+                opacity: .7;
+            }
+
+            100% {
+                opacity: .4;
+            }
+        }
+
+        @keyframes an5 {
+            0% {
+                opacity: 1;
+            }
+
+            20% {
+                opacity: 0.7;
+            }
+
+            50% {
+                opacity: 0.4;
+            }
+
+            70% {
+                opacity: .2;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+        @keyframes an6 {
+            0% {
+                opacity: 0.0;
+            }
+
+            20% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.0;
+            }
+
+            70% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0.0;
+            }
+        }
+
+        @keyframes an7 {
+            0% {
+                opacity: 1;
+            }
+
+            20% {
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            70% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="navbar">
+                <img src="../images/logo.PNG" alt="logo" width="100">
+                <ul>
+                    <a href="homepage.html">
+
+                        <li>Home</li>
+                    </a>
+                    <a href="signup.html">
+                        <li>SignUp</li>
+                    </a>
+                    <a href="../html/login.html" id="">
+                        <li>Login</li>
+                    </a>
+                </ul>
+            </div class="navbar">
+        </div>
+        </div>
+    </header> 
+    <main>
+        
+        <div class="bgan1">
             <p id="fade1">Lock N key</p>
             <p id="fade2">Lock N key</p>
             <p id="fade3">Lock N Key</p>
             <p id="fade4">Lock N Key</p>
-            <p id="fade5">Lock N Key</p>
-            <p id="fade6">Lock N Key</p>
-            <p id="fade7">Lock N Key</p>
-            <div class="form_contain">
+        </div>
+
+        <div class="form_contain">
             <form name="form1" onsubmit="" method="POST">
                 <p style="color: #66fcf1;font-size: 24px;">Enter Domain name here:</p>
-                <input type="text" name="dom" minlength="3" placeholder="Enter the domain name here" pattern="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ ~`!@#$%^&*()_-+={[}]|\:;'<,>.?/{1,}[.][a-z]{1,2}">
-                <p style="color: #66fcf1;font-size: 24px;">Enter Password of your choice here or press the generate button</p>
+                <input type="text" name="dom" minlength="3" placeholder="Enter the domain name here"
+                    pattern="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ ~`!@#$%^&*()_-+={[}]|\:;'<,>.?/{1,}[.][a-z]{1,2}">
+                <p style="color: #66fcf1;font-size: 24px;">Enter Password of your choice here or press the generate
+                    button</p>
                 <input type="password" minlength="1" placeholder="Enter password here" name="pass"><br>
                 <input type="button" onclick="gen()" id="but1" value="Generate"><br><br>
                 <div class="slidecontainer">
                     <input type="range" min="8" max="20" value="14" class="slider" id="myRange">
                     <p id="demo0"><span id="demo2">8</span><span id="demo">Value</span><span id="demo3">20</span></p>
-                  </div>
+                </div>
                 <p name="head" id="head">The password generated is</p>
                 <p name="pass2" id="pass2">Prt$%s52+hK:54</p>
                 <p id="strong">Password strength is</p>
@@ -467,56 +496,63 @@ margin-top: 0px;
                     <caption style="color: rgb(4, 238, 255);font-size: 16px;">Medium</caption>
                     <tr>
                         <td style="background-color:rgb(255, 174, 0)"></td>
-                        <td  style="background-color:rgb(255, 174, 0)"></td>
                         <td style="background-color:rgb(255, 174, 0)"></td>
-                        <td ></td>
-                        <td ></td>
+                        <td style="background-color:rgb(255, 174, 0)"></td>
+                        <td></td>
+                        <td></td>
                     </tr>
                 </table>
                 <br>
                 <input type="submit" value="ADD" id="add">
             </form>
-            </div>
-        </main>
-        <script>
-              var a=document.getElementById("demo0");
-                var b=document.getElementById("head");
-                var c=document.getElementById("pass2");
-                var d=document.getElementById("tab");
-                var e=document.getElementsByClassName("slider");
-                var f=document.getElementById("strong");
-            function gen()
-            {
-                a.style.display='inline-block';
-                b.style.display="block";
-                c.style.display="block";
-                f.style.display="block";
-                d.style.display="block";
-                e[0].style.display="block";
-            }
-            var slider = document.getElementById("myRange");
-var output = document.getElementById("demo");
-output.innerHTML = slider.value;
+        </div>
+        <div class="bgan1">
+            <p id="fade5">Lock N Key</p>
+            <p id="fade6">Lock N Key</p>
+            <br><br><br><br><br>
+            <p id="fade7">Lock N Key</p>
+        </div>
+    </main>
 
-slider.oninput = function() {
-  output.innerHTML = this.value;
-  c.innerHTML="";
-  var j='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()/?,.;:+-';
-  var k="";
-  while(k.length<slider.value)
-  {
-     k+=j[Math.floor(Math.random() * j.length)];
-  }
-c.innerHTML=k;
-}
-        </script>
-        <footer>
-            <div class="copyright">Copyright © 2020 Lock&Key</div>
-            <div>
-                <a href="https://github.com/Jas-077/IWP_Project" target="_blank">
-                    <i class="fa fa-github fa-2x" aria-hidden="true"></i>
-                </a>
-            </div>
-        </footer>
-    </body>
+
+    <script>
+        var a = document.getElementById("demo0");
+        var b = document.getElementById("head");
+        var c = document.getElementById("pass2");
+        var d = document.getElementById("tab");
+        var e = document.getElementsByClassName("slider");
+        var f = document.getElementById("strong");
+        function gen() {
+            a.style.display = 'inline-block';
+            b.style.display = "block";
+            c.style.display = "block";
+            f.style.display = "block";
+            d.style.display = "block";
+            e[0].style.display = "block";
+        }
+        var slider = document.getElementById("myRange");
+        var output = document.getElementById("demo");
+        output.innerHTML = slider.value;
+
+        slider.oninput = function () {
+            output.innerHTML = this.value;
+            c.innerHTML = "";
+            var j = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()/?,.;:+-';
+            var k = "";
+            while (k.length < slider.value) {
+                k += j[Math.floor(Math.random() * j.length)];
+            }
+            c.innerHTML = k;
+        }
+    </script>
+</body>
+<footer>
+    <div class="copyright">Copyright © 2020 Lock&Key</div>
+    <div>
+        <a href="https://github.com/Jas-077/IWP_Project" target="_blank">
+            <i class="fa fa-github fa-2x" aria-hidden="true"></i>
+        </a>
+    </div>
+</footer>
+
 </html>
