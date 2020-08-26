@@ -23,31 +23,31 @@
             color: white;
         }
 
-        main{
+        main {
             overflow-y: scroll;
             height: 80vh;
-            display: flex;            
+            display: flex;
             justify-content: space-between;
             width: 100%;
             overflow-x: hidden;
         }
 
-        .bgan1{
+        .bgan1 {
             width: 30%;
             height: 100%;
             display: flex;
             flex-direction: column;
-            align-items:center;
+            align-items: center;
             justify-content: space-evenly;
             padding: 4%;
         }
-        
+
         .form_contain {
             position: relative;
             width: 40%;
             height: 600px;
-            padding:5%;
-        } 
+            padding: 5%;
+        }
 
         @keyframes Gradient {
             0% {
@@ -78,6 +78,7 @@
             opacity: 0.7;
             -webkit-transition: .2s;
             transition: opacity .2s;
+            margin: 0
         }
 
         .slider:hover {
@@ -100,14 +101,14 @@
             border-radius: 0%;
             background: #45a29e;
             cursor: pointer;
-        }      
+        }
 
         footer {
             position: initial;
         }
 
         .form_contain input {
-            width: 60%;
+            width: 70%;
             margin-bottom: 4%;
         }
 
@@ -150,13 +151,12 @@
 
         #demo0 {
             display: none;
-            position: relative;
-            margin-top: -15px;
+            width: 70%;
+            justify-content: space-between;
         }
 
         #demo {
-            position: relative;
-            margin-left: 340%;
+
             color: aqua;
         }
 
@@ -166,8 +166,7 @@
         }
 
         #demo3 {
-            position: relative;
-            margin-left: 320%;
+
             color: aqua;
         }
 
@@ -182,7 +181,7 @@
         #pass2 {
             display: none;
             margin-top: -5px;
-            width: 51%;
+            width: 60%;
             font-family: 'Times New Roman', Times, serif;
             color: rgb(30, 176, 243);
             font-size: 19px;
@@ -466,9 +465,9 @@
             </div class="navbar">
         </div>
         </div>
-    </header> 
+    </header>
     <main>
-        
+
         <div class="bgan1">
             <p id="fade1">Lock N key</p>
             <p id="fade2">Lock N key</p>
@@ -487,10 +486,13 @@
                 <input type="button" onclick="gen()" id="but1" value="Generate"><br><br>
                 <div class="slidecontainer">
                     <input type="range" min="8" max="20" value="14" class="slider" id="myRange">
-                    <p id="demo0"><span id="demo2">8</span><span id="demo">Value</span><span id="demo3">20</span></p>
+                    <div id="demo0"><span id="demo2">8</span><span id="demo">Value</span><span id="demo3">20</span>
+                    </div>
                 </div>
+                <br>
                 <p name="head" id="head">The password generated is</p>
                 <p name="pass2" id="pass2">Prt$%s52+hK:54</p>
+                <br>
                 <p id="strong">Password strength is</p>
                 <table id="tab">
                     <caption style="color: rgb(4, 238, 255);font-size: 16px;">Medium</caption>
@@ -523,7 +525,7 @@
         var e = document.getElementsByClassName("slider");
         var f = document.getElementById("strong");
         function gen() {
-            a.style.display = 'inline-block';
+            a.style.display = 'flex';
             b.style.display = "block";
             c.style.display = "block";
             f.style.display = "block";
