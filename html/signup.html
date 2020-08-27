@@ -159,31 +159,34 @@
             </form>
         </div>
     </main>
-    <footer>
-        <div class="copyright">Copyright © 2020 Lock&Key</div>
-        <div>
-            <a href="https://github.com/Jas-077/IWP_Project" target="_blank">
-                <i class="fa fa-github fa-2x" aria-hidden="true"></i>
-            </a>
-        </div>
-    </footer>
-</body>
-<script>
-    function validate() {
-        var x = document.forms["form1"]["pass1"].value;
-        var y = document.forms["form1"]["pass2"].value;
-        var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
-        if (strongRegex.test(x)) {
-            if (x != y) {
-                alert("Pls Enter the correct password in Confirm password option");
+
+    <script>
+        function validate() {
+            var x = document.forms["form1"]["pass1"].value;
+            var y = document.forms["form1"]["pass2"].value;
+            var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+            if (strongRegex.test(x)) {
+                if (x != y) {
+                    alert("Pls Enter the correct password in Confirm password option");
+                    return false;
+                }
+            }
+            else {
+                alert("The entered Password is not strong enough");
                 return false;
             }
         }
-        else {
-            alert("The entered Password is not strong enough");
-            return false;
-        }
-    }
-</script>
+    </script>
+
+</body>
+
+<footer>
+    <div class="copyright">Copyright © 2020 Lock&Key</div>
+    <div>
+        <a href="https://github.com/Jas-077/IWP_Project" target="_blank">
+            <i class="fa fa-github fa-2x" aria-hidden="true"></i>
+        </a>
+    </div>
+</footer>
 
 </html>
