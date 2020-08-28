@@ -57,13 +57,15 @@
                 <h3>Password</h3>
                 <div class="password">
                     <input type="password" readonly value="abcdeabcde12345$%^&*">
+                    <input type="text">
                     <span class="fa fa-eye" aria-hidden="true" onclick="show(event)"></span>
-                    <span class="fa fa-clipboard" aria-hidden="true"></span>
+                    <span class="fa fa-clipboard" aria-hidden="true" onclick="copy(event)"></span>
                 </div>
                 <div class="password">
-                    <input type="text" readonly value="abcdeabcde12345$%^&*">
+                    <input type="text" readonly value="abcdeabcde*">
+                    <input type="text">
                     <span class="fa fa-eye" aria-hidden="true" onclick="show(event)"></span>
-                    <span class="fa fa-clipboard" aria-hidden="true"></span>
+                    <span class="fa fa-clipboard" aria-hidden="true" onclick="copy(event)"></span>
                 </div>
 
             </div>
@@ -82,6 +84,20 @@
             } else {
                 passwd.type = "password"
             }
+        }
+
+        function copy(event) {
+            var copy_btn = event.target
+            var parent = copy_btn.parentElement
+            console.log(parent)
+            var passwd = parent.getElementsByTagName('input')[0]
+            var cppasswd = parent.getElementsByTagName('input')[1]
+            cppasswd.value = passwd.value
+            cppasswd.style.display = "block"
+            cppasswd.select()
+            document.execCommand("copy")
+            cppasswd.style.display = "none"
+            cppasswd.innerHTML = ""
         }
     </script>
 </body>

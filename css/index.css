@@ -255,13 +255,13 @@ footer a {
   overflow-y: auto;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (1fr)[2] 1.5fr;
+  -ms-grid-columns: repeat(2,1fr) 1.5fr;
       grid-template-columns: repeat(2, 1fr) 1.5fr;
   background-color: #2f3031;
-  color: #66FCF1;
+  color: #66fcf1;
   border: 5px groove #31383d;
-  -webkit-box-shadow: 3px 3px 3px #45A29E;
-          box-shadow: 3px 3px 3px #45A29E;
+  -webkit-box-shadow: 3px 3px 3px #45a29e;
+          box-shadow: 3px 3px 3px #45a29e;
 }
 
 .col-container div {
@@ -295,7 +295,15 @@ footer a {
   width: 60%;
   border: 0px;
   padding-left: 1%;
-  color: #66FCF1;
+  color: #66fcf1;
   background-color: inherit;
+}
+
+.password input:nth-child(2) {
+  display: none;
+}
+
+.password span {
+  cursor: pointer;
 }
 /*# sourceMappingURL=index.css.map */
