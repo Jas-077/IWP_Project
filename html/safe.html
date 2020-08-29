@@ -45,27 +45,32 @@
         <div class="locker-container">
             <div class="col-container">
                 <h3>Website</h3>
-                <div class="domain-name">google.com</div>
-                <div class="domain-name">google.com</div>
+                <div class="domain-name row">google.com</div>
+                <div class="domain-name row">google.com</div>
             </div>
             <div class="col-container">
                 <h3>Username</h3>
-                <div class="username">Gerosh</div>
-                <div class="username">Gerosh</div>
+                <div class="username row">Gerosh</div>
+                <div class="username row">Gerosh</div>
             </div>
             <div class="col-container">
                 <h3>Password</h3>
-                <div class="password">
+                <div class="password row">
                     <input type="password" readonly value="abcdeabcde12345$%^&*">
                     <input type="text">
                     <span class="fa fa-eye" aria-hidden="true" onclick="show(event)"></span>
-                    <span class="fa fa-clipboard" aria-hidden="true" onclick="copy(event)"></span>
+                    <div class="fa fa-clipboard tooltip" aria-hidden="true" onclick="copy(event)">
+                        <span class="tooltiptext">Copied</span>
+                    </div>
+
                 </div>
                 <div class="password">
                     <input type="text" readonly value="abcdeabcde*">
                     <input type="text">
                     <span class="fa fa-eye" aria-hidden="true" onclick="show(event)"></span>
-                    <span class="fa fa-clipboard" aria-hidden="true" onclick="copy(event)"></span>
+                    <div class="fa fa-clipboard tooltip" aria-hidden="true" onclick="copy(event)">
+                        <span class="tooltiptext">Copied</span>
+                    </div>
                 </div>
 
             </div>
@@ -75,9 +80,9 @@
     <script>
         function show(event) {
             var show_btn = event.target
-            console.log(show_btn)
+            //console.log(show_btn)
             var parent = show_btn.parentElement
-            console.log(parent)
+            //console.log(parent)
             var passwd = parent.getElementsByTagName('input')[0]
             if (passwd.type === "password") {
                 passwd.type = "text"
@@ -89,7 +94,7 @@
         function copy(event) {
             var copy_btn = event.target
             var parent = copy_btn.parentElement
-            console.log(parent)
+            //console.log(parent)
             var passwd = parent.getElementsByTagName('input')[0]
             var cppasswd = parent.getElementsByTagName('input')[1]
             cppasswd.value = passwd.value
@@ -98,6 +103,14 @@
             document.execCommand("copy")
             cppasswd.style.display = "none"
             cppasswd.innerHTML = ""
+
+            var tooltip = parent.getElementsByClassName('tooltiptext')[0]
+            //console.log(tooltip)
+            tooltip.style.visibility = "visible"
+
+            setTimeout(function () {
+                tooltip.style.visibility = "hidden"
+            }, 1000)
         }
     </script>
 </body>
