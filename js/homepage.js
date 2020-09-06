@@ -7,7 +7,7 @@ function init() {
 	const words = JSON.parse(txtElement.getAttribute("data-words"));
 	const wait = txtElement.getAttribute("data-wait");
 
-	new typewriter(txtElement, words, wait);
+	setTimeout(()=>new typewriter(txtElement, words, wait), 4000);
 }
 
 const typewriter = function (txtElement, words, wait = 3000) {

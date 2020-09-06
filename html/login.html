@@ -9,6 +9,7 @@
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/gen_loader.css">
 
     <style>
         body {
@@ -118,6 +119,9 @@
 </head>
 
 <body>
+    <div class="loader-container">
+        <h1>Redirecting</h1>
+    </div>
     <header>
         <div class="nav-container">
             <div class="navbar">
@@ -155,7 +159,7 @@
                 <p>Enter Captcha (*):</p>
                 <input type="text" name="cap" minlength="1" maxlength="7" pattern="[0-9a-zA-Z]{1,7}"
                     placeholder="Enter the Captcha here" required>
-                <input type="submit" name="" value="Log in">
+                <input type="submit" name="" value="Log in" onclick="myFunction()">
                 <a href="../html/signup.html">Dont have an Account? Sign up</a><br>
                 <a href="forgot.html">Forgot Password? Click Here!</a>
             </form>
@@ -188,6 +192,7 @@
             <i class="fa fa-github fa-2x" aria-hidden="true"></i>
         </a>
     </div>
+    <script src="../js/gen_loader.js"></script>
 </footer>
 
 </html>

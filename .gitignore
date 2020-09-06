@@ -1,2 +1,4 @@
 *.scss
 index.css.map
+documents
+.vscode
