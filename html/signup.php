@@ -1,3 +1,59 @@
+<?php
+define('DB_SERVER', 'localhost');
+define('DB_USERNAME', 'root');
+define('DB_PASSWORD', 'root');
+define('DB_NAME', 'lock');
+ 
+/* Attempt to connect to MySQL database */
+$link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+ 
+// Check connection
+if($link === false){
+    die("ERROR: Could not connect. " . mysqli_connect_error());
+}
+$sql1=$link->prepare("insert into user(name,username,mail,age,password) values(?,?,?,?,?)");
+$sql1->bind_param("sssss",$name,$username,$mail,$age,$pass2);
+if($_SERVER["REQUEST_METHOD"] == "POST")
+{
+    $sql = "SELECT * FROM lock.user WHERE username = ?;";
+    if($stmt = mysqli_prepare($link, $sql))
+    {
+        // Bind variables to the prepared statement as parameters
+        mysqli_stmt_bind_param($stmt, "s", $param_username);
+        
+        // Set parameters
+        $param_username = trim($_POST["user"]);
+        
+        // Attempt to execute the prepared statement
+        if(mysqli_stmt_execute($stmt)){
+            /* store result */
+            mysqli_stmt_store_result($stmt);
+            
+            if(mysqli_stmt_num_rows($stmt) == 1){
+                $username_err = "This username is already taken.";
+                echo '<script>
+                alert("Username already taken");
+                </script>';
+            } else{
+                $username = trim($_POST["user"]);
+            }
+        } else{
+            echo "Oops! Something went wrong. Please try again later.";
+        }
+        // Close statement
+        mysqli_stmt_close($stmt);
+    }
+
+    $name=$_POST["name"];
+    $mail=$_POST["mail"];
+    $age=($_POST["age"]);
+    $pass=$_POST["pass1"];
+    $pass2=password_hash($pass,PASSWORD_DEFAULT);
+    //$sql = "SELECT * FROM lock.user WHERE username = ?;";
+$sql1->execute();
+header("location: login.php");
+}
+?>
 <html>
 
 <head>
@@ -116,14 +172,14 @@
             <div class="navbar">
                 <img src="../images/logo.PNG" alt="logo" width="100">
                 <ul>
-                    <a href="homepage.html">
+                    <a href="index.php">
 
                         <li>Home</li>
                     </a>
-                    <a href="signup.html" id="active">
+                    <a href="signup.php" id="active">
                         <li>SignUp</li>
                     </a>
-                    <a href="../html/login.html">
+                    <a href="../html/login.php">
                         <li>Login</li>
                     </a>
                 </ul>
@@ -133,7 +189,7 @@
     </header>
     <main>
         <div class="logindex">
-            <form name="form1" action="log.php" onsubmit="return validate()" method="POST">
+            <form name="form1" action="signup.php" onsubmit="return validate()" method="POST">
                 <img src="../images/avatar.png" class="avatar"><br>
                 <p>Name (*):</p>
                 <input type="text" name="name" minlength="1" maxlength="30" placeholder="Enter your Full name here"
@@ -145,8 +201,8 @@
                 <input type="text" name="mail"
                     pattern="[a-zA-z]{1,}[.]{0,1}[a-zA-z0-9]{0,}[@][a-z]{1,10}[.][a-zA-z]{2,3}"
                     placeholder="Enter your valid email-id" required>
-                <p>Age:</p>
-                <input type="number" min="0" maxlength="3" placeholder="Enter age">
+                <p>Age (*):</p>
+                <input type="number" min="12" maxlength="3" placeholder="Enter age(Atleast 12)" name="age" required>
                 <p>Password (*):</p>
                 <input type="password" name="pass1" minlength="8" maxlength="20" placeholder="Enter a strong Password"
                     required>
@@ -154,8 +210,8 @@
                 <input type="password" name="pass2" minlength="8" maxlength="20" placeholder="Enter the above Password"
                     required>
                 <input type="submit" name="" value="Sign Up">
-                <a href="../html/login.html">Already have an account? Log in!</a><br>
-                <a href="forgot.html">Forgot Password? Click Here!</a>
+                <a href="../html/login.php">Already have an account? Log in!</a><br>
+                <a href="forgot.php">Forgot Password? Click Here!</a>
             </form>
         </div>
     </main>
