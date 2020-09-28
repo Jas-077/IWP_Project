@@ -73,8 +73,8 @@ circle:nth-of-type(6) {
 }
 
 .loader-container.hidden {
-	-webkit-animation: vanish 4s;
-	animation: vanish 4s;
+	-webkit-animation: vanish 3s;
+	animation: vanish 3s;
 	-webkit-animation-fill-mode: forwards;
 	animation-fill-mode: forwards;
 }

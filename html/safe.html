@@ -15,6 +15,8 @@
 
     <link rel="stylesheet" href="../css/index.css">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 </head>
 
 <body>
@@ -39,39 +41,21 @@
     </header>
     <main class="safe-container">
         <div class="welcome">
-            <h1>Hello, <span id="user">User</span> Welcome to your Personal Safe</h1>
+            <h1>Hello, <span id="user" style="text-transform: capitalize;">User</span> Welcome to your Personal Safe
+            </h1>
         </div>
 
         <div class="locker-container">
             <div class="col-container">
                 <h3>Website</h3>
-                <div class="domain-name row">google.com</div>
-                <div class="domain-name row">google.com</div>
+
             </div>
             <div class="col-container">
                 <h3>Username</h3>
-                <div class="username row">Gerosh</div>
-                <div class="username row">Gerosh</div>
+
             </div>
             <div class="col-container">
                 <h3>Password</h3>
-                <div class="password row">
-                    <input type="password" readonly value="abcdeabcde12345$%^&*">
-                    <input type="text">
-                    <span class="fa fa-eye" aria-hidden="true" onclick="show(event)"></span>
-                    <div class="fa fa-clipboard tooltip" aria-hidden="true" onclick="copy(event)">
-                        <span class="tooltiptext">Copied</span>
-                    </div>
-
-                </div>
-                <div class="password">
-                    <input type="text" readonly value="abcdeabcde*">
-                    <input type="text">
-                    <span class="fa fa-eye" aria-hidden="true" onclick="show(event)"></span>
-                    <div class="fa fa-clipboard tooltip" aria-hidden="true" onclick="copy(event)">
-                        <span class="tooltiptext">Copied</span>
-                    </div>
-                </div>
 
             </div>
         </div>
@@ -112,6 +96,56 @@
                 tooltip.style.visibility = "hidden"
             }, 1000)
         }
+
+        function safe() {
+
+            var details = $.parseJSON(
+                $.ajax({
+                    url: "safeDB.php",
+                    type: "get",
+                    dataType: "json",
+                    async: false,
+                }).responseText)
+
+            console.log(details)
+            if (details != 'No data') {
+
+                var domain_col = document.querySelectorAll('.col-container')[0]
+                var username_col = document.querySelectorAll('.col-container')[1]
+                var password_col = document.querySelectorAll('.col-container')[2]
+
+                var user = document.querySelector('#user')
+                user.innerHTML = details[0]['acc_username']
+
+                var len = Object.keys(details).length
+                for (var i = 0; i < len; i++) {
+
+                    var domain = `<div class="domain-name row">${details[i]['domain_name']}</div>`
+                    var username = `<div class="username row">${details[i]['domain_username']}</div>`
+                    var password = `<div class="password row">
+                    <input type="password" readonly value="${details[i]['domain_password']}">
+                    <input type="text">
+                    <span class="fa fa-eye" aria-hidden="true" onclick="show(event)"></span>
+                    <div class="fa fa-clipboard tooltip" aria-hidden="true" onclick="copy(event)">
+                        <span class="tooltiptext">Copied</span>
+                    </div>
+                </div>`
+
+                    domain_col.innerHTML += domain
+                    username_col.innerHTML += username
+                    password_col.innerHTML += password
+                }
+            }
+            else {
+                var c = confirm('No passwords made yet! Lets create one now?')
+                if (c == true) {
+                    window.location.replace('generate.html')
+                }
+            }
+
+        }
+
+        safe()
     </script>
 </body>
 <footer>

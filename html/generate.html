@@ -477,13 +477,16 @@
         </div>
 
         <div class="form_contain">
-            <form name="form1" onsubmit="" method="POST">
+            <form name="form1" action="safeDB.php" method="POST">
                 <p style="color: #66fcf1;font-size: 24px;">Enter Domain name here:</p>
-                <input type="text" name="dom" minlength="3" placeholder="Enter the domain name here"
-                    pattern="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ ~`!@#$%^&*()_-+={[}]|\:;'<,>.?/{1,}[.][a-z]{1,2}">
+                <input type="text" name="domain" minlength="3" placeholder="Enter the domain name here"
+                    pattern="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ ~`!@#$%^&*()_-+={[}]|\:;'<,>.?/{1,}[.][a-z]{1,2}"
+                    required>
+                <p style="color: #66fcf1;font-size: 24px;">Enter the Username here:</p>
+                <input type="text" placeholder="Username" name="d_username" required><br>
                 <p style="color: #66fcf1;font-size: 24px;">Enter Password of your choice here or press the generate
                     button</p>
-                <input type="password" minlength="1" placeholder="Enter password here" name="pass"><br>
+                <input type="text" minlength="8" placeholder="Enter password here" name="password"><br>
                 <input type="button" onclick="gen()" id="but1" value="Generate"><br><br>
                 <div class="slidecontainer">
                     <input type="range" min="8" max="20" value="14" class="slider" id="myRange">
@@ -492,7 +495,7 @@
                 </div>
                 <br>
                 <p name="head" id="head">The password generated is</p>
-                <p name="pass2" id="pass2">Prt$%s52+hK:54</p>
+                <input type="text" name="pass2" id="pass2" value="Prt$%s52+hK:54" readonly></input>
                 <br>
                 <p id="strong">Password strength is</p>
                 <table id="tab">
@@ -546,10 +549,11 @@
             while (k.length < slider.value) {
                 k += j[Math.floor(Math.random() * j.length)];
             }
-            c.innerHTML = k;
+            c.value = k;
         }
     </script>
 </body>
+
 <footer>
     <div class="copyright">Copyright © 2020 Lock&Key</div>
     <div>
