@@ -11,9 +11,9 @@ use PHPMailer\PHPMailer\Exception;
 
 /* If you installed PHPMailer without Composer do this instead: */
 
-require '/Applications/MAMP/htdocs/PHPMailer-master/src/Exception.php';
-require '/Applications/MAMP/htdocs/PHPMailer-master/src/PHPMailer.php';
-require '/Applications/MAMP/htdocs/PHPMailer-master/src/SMTP.php';
+require '../PHPMailer-master/src/Exception.php';
+require '../PHPMailer-master/src/PHPMailer.php';
+require '../PHPMailer-master/src/SMTP.php';
 // Check connection
 if($link === false){
     die("ERROR: Could not connect. " . mysqli_connect_error());
