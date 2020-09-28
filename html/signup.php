@@ -1,57 +1,56 @@
 <?php
 define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'root');
-define('DB_PASSWORD', 'root');
+define('DB_PASSWORD', '');
 define('DB_NAME', 'lock');
- 
+
 /* Attempt to connect to MySQL database */
 $link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
- 
+
 // Check connection
-if($link === false){
+if ($link === false) {
     die("ERROR: Could not connect. " . mysqli_connect_error());
 }
-$sql1=$link->prepare("insert into user(name,username,mail,age,password) values(?,?,?,?,?)");
-$sql1->bind_param("sssss",$name,$username,$mail,$age,$pass2);
-if($_SERVER["REQUEST_METHOD"] == "POST")
-{
+$sql1 = $link->prepare("insert into user(name,username,mail,age,password) values(?,?,?,?,?)");
+$sql1->bind_param("sssss", $name, $username, $mail, $age, $pass2);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "SELECT * FROM lock.user WHERE username = ?;";
-    if($stmt = mysqli_prepare($link, $sql))
-    {
+    if ($stmt = mysqli_prepare($link, $sql)) {
         // Bind variables to the prepared statement as parameters
         mysqli_stmt_bind_param($stmt, "s", $param_username);
-        
+
         // Set parameters
         $param_username = trim($_POST["user"]);
-        
+
         // Attempt to execute the prepared statement
-        if(mysqli_stmt_execute($stmt)){
+        if (mysqli_stmt_execute($stmt)) {
             /* store result */
             mysqli_stmt_store_result($stmt);
-            
-            if(mysqli_stmt_num_rows($stmt) == 1){
+
+            if (mysqli_stmt_num_rows($stmt) == 1) {
                 $username_err = "This username is already taken.";
                 echo '<script>
                 alert("Username already taken");
                 </script>';
-            } else{
+            } else {
                 $username = trim($_POST["user"]);
             }
-        } else{
+        } else {
             echo "Oops! Something went wrong. Please try again later.";
         }
         // Close statement
         mysqli_stmt_close($stmt);
     }
 
-    $name=$_POST["name"];
-    $mail=$_POST["mail"];
-    $age=($_POST["age"]);
-    $pass=$_POST["pass1"];
-    $pass2=password_hash($pass,PASSWORD_DEFAULT);
+    $name = $_POST["name"];
+    $mail = $_POST["mail"];
+    $age = ($_POST["age"]);
+    $pass = $_POST["pass1"];
+    $pass2 = password_hash($pass, PASSWORD_DEFAULT);
+    //$pass2 = $pass;
     //$sql = "SELECT * FROM lock.user WHERE username = ?;";
-$sql1->execute();
-header("location: login.php");
+    $sql1->execute();
+    header("location: login.php");
 }
 ?>
 <html>
@@ -211,7 +210,6 @@ header("location: login.php");
                     required>
                 <input type="submit" name="" value="Sign Up">
                 <a href="../html/login.php">Already have an account? Log in!</a><br>
-                <a href="forgot.php">Forgot Password? Click Here!</a>
             </form>
         </div>
     </main>

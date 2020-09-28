@@ -1,13 +1,13 @@
 <?php
 define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'root');
-define('DB_PASSWORD', 'root');
+define('DB_PASSWORD', '');
 define('DB_NAME', 'lock');
- 
+
 /* Attempt to connect to MySQL database */
 $link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
-use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\PHPMailer;
 
 /* If you installed PHPMailer without Composer do this instead: */
 
@@ -15,7 +15,7 @@ require '../PHPMailer-master/src/Exception.php';
 require '../PHPMailer-master/src/PHPMailer.php';
 require '../PHPMailer-master/src/SMTP.php';
 // Check connection
-if($link === false){
+if ($link === false) {
     die("ERROR: Could not connect. " . mysqli_connect_error());
 }
 
@@ -157,86 +157,77 @@ if($link === false){
         </footer>
         </html>
         <?php
-if($_SERVER["REQUEST_METHOD"] == "POST")
-{
-    $sql2="select * from otp_con";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $sql2 = "select * from otp_con";
     $result = mysqli_query($link, $sql2);
-    $row=mysqli_fetch_array($result);
-    $mail=$row["mail"];
-    $sql3="DELETE FROM otp_con WHERE mail='$mail'";
-    mysqli_query($link,$sql3);
+    $row = mysqli_fetch_array($result);
+    $mail = $row["mail"];
+    $sql3 = "DELETE FROM otp_con WHERE mail='$mail'";
+    mysqli_query($link, $sql3);
 
     $sql = "SELECT * FROM lock.user WHERE mail = ?;";
-    if($stmt = mysqli_prepare($link, $sql))
-    {
+    if ($stmt = mysqli_prepare($link, $sql)) {
         // Bind variables to the prepared statement as parameters
         mysqli_stmt_bind_param($stmt, "s", $param_mail);
-        
+
         // Set parameters
         $param_mail = trim($_POST["mail"]);
-        
+
         // Attempt to execute the prepared statement
-        if(mysqli_stmt_execute($stmt)){
+        if (mysqli_stmt_execute($stmt)) {
             /* store result */
             mysqli_stmt_store_result($stmt);
-            
-            if(mysqli_stmt_num_rows($stmt) != 1){
-                echo '<script>
-                alert("Entered Mail does not exist");
-                </script>';
-            } 
-            else
-            {
-                echo '<script>
-                alert("Entered Mail does  exist");
-                </script>';
 
+            if (mysqli_stmt_num_rows($stmt) != 1) {
+                echo '<script>
+                alert("This mail address is not a registered one...Please Signup");
+                </script>';
+            } else {
+                echo '<script>
+                alert("OTP has been sent...Please check your mail");
+                </script>';
 
 /* Create a new PHPMailer object. Passing TRUE to the constructor enables exceptions. */
-$mail = new PHPMailer(TRUE);
-$result = ""; 
-$generator = "1357902468"; 
-for ($i = 1; $i <= 4; $i++) { 
-$result .= substr($generator, (rand()%(strlen($generator))), 1); 
-} 
+                $mail = new PHPMailer(true);
+                $result = "";
+                $generator = "1357902468";
+                for ($i = 1; $i <= 4; $i++) {
+                    $result .= substr($generator, (rand() % (strlen($generator))), 1);
+                }
 /* Open the try/catch block. */
-try {
-  //$mail->SMTPDebug= 2;
-   $mail->isSMTP();
-   $mail->Host ='smtp.gmail.com';
-   $mail->SMTPAuth= true;
-   $mail->Username= 'noreply.locknkey@gmail.com';
-   $mail->Password= 'Lock&key!';
-   $mail ->SMTPSecure= 'tls';
-   $mail->Port= 587;
+                try {
+                    //$mail->SMTPDebug= 2;
+                    $mail->isSMTP();
+                    $mail->Host = 'smtp.gmail.com';
+                    $mail->SMTPAuth = true;
+                    $mail->Username = 'noreply.locknkey@gmail.com';
+                    $mail->Password = 'Lock&key!';
+                    $mail->SMTPSecure = 'tls';
+                    $mail->Port = 587;
 
-   $mail->setFrom('noreply.locknkey@gmail.com','Lock&Key');
-   $mail->addAddress(trim($_POST["mail"]));
+                    $mail->setFrom('noreply.locknkey@gmail.com', 'Lock&Key');
+                    $mail->addAddress(trim($_POST["mail"]));
 
-   $mail->isHTML(true);
-   $mail->Subject="Forgot Password Instructions";
-   $mail->Body= "Hello,<br> Pls Enter this OTP: ".$result." and follow the instructions to change your password.<br><br>Thankyou,<br>Lock&Key Team";
+                    $mail->isHTML(true);
+                    $mail->Subject = "Forgot Password Instructions";
+                    $mail->Body = "Hello,<br> Pls Enter this OTP: " . $result . " and follow the instructions to change your password.<br><br>Thankyou,<br>Lock&Key Team";
 
-   $mail->send();
-   echo 'Message sent';
-   echo '<script>
+                    $mail->send();
+                    echo 'Message sent';
+                    echo '<script>
 document.getElementById("form1").style.display="none";
 document.getElementById("form2").style.display="block";
 </script>';
-$sql1=$link->prepare("insert into otp_con (otp,mail) values(?,?)");
-$sql1->bind_param("ss",$result,$_POST["mail"]);
+                    $sql1 = $link->prepare("insert into otp_con (otp,mail) values(?,?)");
+                    $sql1->bind_param("ss", $result, $_POST["mail"]);
 
-$sql1->execute();
-}
-catch(Exception $e)
-{
-    echo "Message could not be sent. Error: ";
-}
+                    $sql1->execute();
+                } catch (Exception $e) {
+                    echo "Message could not be sent. Error: ";
+                }
 
             }
-        } 
-        else
-        {
+        } else {
             echo "Oops! Something went wrong. Please try again later.";
         }
         // Close statement

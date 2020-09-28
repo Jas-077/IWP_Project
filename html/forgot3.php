@@ -1,13 +1,12 @@
 <?php
 define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'root');
-define('DB_PASSWORD', 'root');
+define('DB_PASSWORD', '');
 define('DB_NAME', 'lock');
- 
+
 /* Attempt to connect to MySQL database */
 $link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
 
 /* If you installed PHPMailer without Composer do this instead: */
 
@@ -15,22 +14,21 @@ require '../PHPMailer-master/src/Exception.php';
 require '../PHPMailer-master/src/PHPMailer.php';
 require '../PHPMailer-master/src/SMTP.php';
 // Check connection
-if($link === false){
+if ($link === false) {
     die("ERROR: Could not connect. " . mysqli_connect_error());
 }
-if($_SERVER["REQUEST_METHOD"] == "POST")
-{
-    $a=$_POST["pass1"];
-    $sql2="select * from otp_con";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $a = $_POST["pass1"];
+    $sql2 = "select * from otp_con";
     $result = mysqli_query($link, $sql2);
-    $row=mysqli_fetch_array($result);
-    $mail=$row["mail"];
-    $a=password_hash($a,PASSWORD_DEFAULT);
-    $sql1="UPDATE user SET password='$a' WHERE mail='$mail'";
-    mysqli_query($link,$sql1);
-    $sql3="DELETE FROM otp_con WHERE mail='$mail'";
-    mysqli_query($link,$sql3);
-    header("location: signup.php?sucessfull");
+    $row = mysqli_fetch_array($result);
+    $mail = $row["mail"];
+    $a = password_hash($a, PASSWORD_DEFAULT);
+    $sql1 = "UPDATE user SET password='$a' WHERE mail='$mail'";
+    mysqli_query($link, $sql1);
+    $sql3 = "DELETE FROM otp_con WHERE mail='$mail'";
+    mysqli_query($link, $sql3);
+    header("location: login.php?sucessfull");
 }
 ?>
 <html>
@@ -117,7 +115,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
             box-shadow: 0px 2px rgb(2, 41, 88);
             transform: translateY(2px);
         }
-        #p 
+        #p
         {
             font-size: 30px;
         }

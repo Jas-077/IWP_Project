@@ -25,7 +25,7 @@
             <div class="navbar">
                 <img src="../images/logo.PNG" alt="logo" width="100">
                 <ul>
-                    <a href="homepage.html" id="">
+                    <a href="index.php">
                         <li>Home</li>
                     </a>
                     <a href="generate.html">
@@ -107,8 +107,9 @@
                     async: false,
                 }).responseText)
 
+
             console.log(details)
-            if (details != 'No data') {
+            if (details[0] != 'No data') {
 
                 var domain_col = document.querySelectorAll('.col-container')[0]
                 var username_col = document.querySelectorAll('.col-container')[1]
@@ -137,6 +138,8 @@
                 }
             }
             else {
+                var user = document.querySelector('#user')
+                user.innerHTML = details[1]
                 var c = confirm('No passwords made yet! Lets create one now?')
                 if (c == true) {
                     window.location.replace('generate.html')
@@ -144,7 +147,6 @@
             }
 
         }
-
         safe()
     </script>
 </body>
