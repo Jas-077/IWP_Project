@@ -226,7 +226,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
             }
             else {
-                alert("The entered Password is not strong enough");
+                alert("The password should contain atleast a capital letter,numbers and special character to be secure!");
                 return false;
             }
         }

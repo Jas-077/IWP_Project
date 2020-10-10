@@ -256,7 +256,7 @@ footer a {
   overflow-x: hidden;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: repeat(2,1fr) 1.5fr;
+  -ms-grid-columns: (1fr)[2] 1.5fr;
       grid-template-columns: repeat(2, 1fr) 1.5fr;
   background-color: #2f3031;
   color: #66fcf1;
@@ -304,6 +304,26 @@ footer a {
   display: none;
 }
 
+.util {
+  width: 100px;
+  margin: 0 80%;
+  color: #66fcf1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.util span {
+  cursor: pointer;
+}
+
+.util a {
+  text-decoration: none;
+  color: #66fcf1;
+}
+
 .password .fa {
   cursor: pointer;
 }
@@ -317,8 +337,8 @@ footer a {
 .tooltip .tooltiptext {
   visibility: hidden;
   width: 70px;
-  background-color: #C5C6C7;
-  color: #0B0C10;
+  background-color: #c5c6c7;
+  color: black;
   text-align: center;
   border-radius: 6px;
   padding: 5px 0;
@@ -337,6 +357,6 @@ footer a {
   margin-left: -5px;
   border-width: 5px;
   border-style: solid;
-  border-color: #C5C6C7 transparent transparent transparent;
+  border-color: #c5c6c7 transparent transparent transparent;
 }
 /*# sourceMappingURL=index.css.map */

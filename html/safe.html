@@ -45,7 +45,13 @@
             </h1>
         </div>
 
+        <div class="util">
+            <a href="#" id="link" download><span class="fa fa-download" aria-hidden="true" id="download"></span></a>
+            <span class="fa fa-trash-o" aria-hidden="true" id="delete-all"></span>
+        </div>
+
         <div class="locker-container">
+
             <div class="col-container">
                 <h3>Website</h3>
 
@@ -56,12 +62,118 @@
             </div>
             <div class="col-container">
                 <h3>Password</h3>
-
             </div>
         </div>
 
     </main>
     <script>
+
+        document.querySelector('#delete-all').addEventListener('click', delete_all)
+        document.querySelector('#download').addEventListener('click', download)
+
+        function delete_record(event) {
+            console.log('delete_record')
+
+            var c = confirm('Do you really want to delete this password?')
+
+            if (c == true) {
+                var password_rows = document.querySelectorAll('.password')
+                var domain = ''
+                var domain_rows = document.querySelectorAll('.domain-name')
+                password_rows.forEach((row, index) => {
+                    if (row == event.target.parentElement) {
+                        domain = domain_rows[index].innerHTML
+                    }
+                })
+
+                var data = $.parseJSON(
+                    $.ajax({
+                        url: "delete.php",
+                        type: "post",
+                        dataType: "json",
+                        data: {
+                            "type": "single",
+                            "domain": domain,
+                        },
+                        async: false,
+                    }).responseText)
+
+                if (data['status'] == 'success') {
+                    alert('Successfully deleted this password from  the safe')
+                    //window.location.href = "safe.html"
+                    safe()
+                } else {
+                    alert('Something went wrong!')
+                }
+            }
+        }
+
+        function delete_all() {
+            console.log('delete_all')
+
+            var row = document.querySelector('.row')
+
+            if (row == undefined || row == null) {
+                alert('There is nothing to be deleted')
+
+            } else {
+
+                var c = confirm('Do you really want to delete all records?')
+
+                if (c == true) {
+                    var data = $.parseJSON(
+                        $.ajax({
+                            url: "delete.php",
+                            type: "post",
+                            dataType: "json",
+                            data: {
+                                "type": "all",
+                            },
+                            async: false,
+                        }).responseText)
+
+                    if (data['status'] == 'success') {
+                        alert('Everything deleted successfully from  the safe')
+                        //window.location.href = "safe.html"
+                        safe()
+                    } else {
+                        alert('Something went wrong!')
+                    }
+                }
+            }
+        }
+
+        function download() {
+            console.log('download')
+            var row = document.querySelector('.row')
+
+            if (row == undefined || row == null) {                
+                alert('The safe is empty...nothing is there to be exported!')
+            } else {
+
+                var data = $.parseJSON(
+                    $.ajax({
+                        url: "download.php",
+                        type: "get",
+                        dataType: "json",
+                        async: false,
+                    }).responseText)
+
+                // console.log(data['status'])
+                // console.log(data['file'])
+
+                if (data['status'] == 'success') {
+                    var filepath = data['file']
+                    var link = document.querySelector('#link')
+                    var filename = filepath.substring(filepath.lastIndexOf('/') + 1)
+                    link.href = "../files/" + filename
+                }
+            }
+
+
+
+        }
+
         function show(event) {
             var show_btn = event.target
             //console.log(show_btn)
@@ -107,13 +219,17 @@
                     async: false,
                 }).responseText)
 
+            var domain_col = document.querySelectorAll('.col-container')[0]
+            var username_col = document.querySelectorAll('.col-container')[1]
+            var password_col = document.querySelectorAll('.col-container')[2]
 
-            console.log(details)
+
+            // console.log(details)
             if (details[0] != 'No data') {
 
-                var domain_col = document.querySelectorAll('.col-container')[0]
-                var username_col = document.querySelectorAll('.col-container')[1]
-                var password_col = document.querySelectorAll('.col-container')[2]
+                domain_col.innerHTML = ''
+                username_col.innerHTML = ''
+                password_col.innerHTML = ''
 
                 var user = document.querySelector('#user')
                 user.innerHTML = details[0]['acc_username']
@@ -130,6 +246,7 @@
                     <div class="fa fa-clipboard tooltip" aria-hidden="true" onclick="copy(event)">
                         <span class="tooltiptext">Copied</span>
                     </div>
+                    <span class="fa fa-trash-o delete" aria-hidden="true"></span>
                 </div>`
 
                     domain_col.innerHTML += domain
@@ -138,6 +255,15 @@
                 }
             }
             else {
+                
+                var link = document.querySelector('#link')
+                link.removeAttribute('download')
+                link.href = "#"
+
+                domain_col.innerHTML = ''
+                username_col.innerHTML = ''
+                password_col.innerHTML = ''
+
                 var user = document.querySelector('#user')
                 user.innerHTML = details[1]
                 var c = confirm('No passwords made yet! Lets create one now?')
@@ -145,6 +271,10 @@
                     window.location.replace('generate.html')
                 }
             }
+
+            document.querySelectorAll('.delete').forEach((del_button) => {
+                del_button.addEventListener('click', delete_record)
+            })
 
         }
         safe()

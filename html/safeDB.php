@@ -34,18 +34,36 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $u_password = $_POST['password'];
     $g_password = $_POST['pass2'];
 
+    $sql = "SELECT * FROM safe WHERE acc_username='$user'";
+
+    $result = $con->query($sql);
+
     $sql = "";
     if ($u_password != '') {
-        $sql = "INSERT INTO safe (acc_username,domain_name,domain_username,domain_password) VALUES ('$user','$domain','$username','$u_password')";
-    } else {
-
-        $sql = "INSERT INTO safe (acc_username,domain_name,domain_username,domain_password) VALUES ('$user','$domain','$username','$g_password')";
+        $g_password = $u_password;
     }
 
-    if (mysqli_query($con, $sql)) {
-        echo "<script>alert('Successfully added to Safe')
+    //$pass2 = password_hash($pass, PASSWORD_DEFAULT);
+
+    $flag = true;
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            if ($domain == $row['domain_name']) {
+                $flag = false;
+                echo "<script>alert('domain name already exist in safe')
+                    window.location='safe.html'</script>";
+            }
+        }
+    }
+
+    if ($flag == true) {
+        $sql = "INSERT INTO safe (acc_username,domain_name,domain_username,domain_password) VALUES ('$user','$domain','$username','$g_password')";
+
+        if (mysqli_query($con, $sql)) {
+            echo "<script>alert('Successfully added to Safe')
         window.location='generate.html'</script>";
 
+        }
     }
 
 }

@@ -60,12 +60,12 @@ if ($link === false) {
             align-items: center;
         }
 
-        .logindex{
+        .logindex {
 
             width: 48%;
             margin: 10% auto 0;
             background: #1F2833;
-            color:cyan ;
+            color: cyan;
             padding: 50px 50px;
             position: relative;
         }
@@ -74,8 +74,8 @@ if ($link === false) {
             height: 150px;
             border-radius: 50%;
             position: absolute;
-            top:-18%;
-            left:28%;
+            top: -18%;
+            left: 28%;
         }
 
         .logindex p {
@@ -99,8 +99,8 @@ if ($link === false) {
             background: transparent;
             outline: none;
             height: 40px;
-            color:#45A29E ;
-;
+            color: #45A29E;
+            ;
             font-size: 16px;
         }
 
@@ -185,7 +185,7 @@ if ($link === false) {
                 </div>
                 <p>Enter Captcha (*):</p>
                 <input type="text" name="cap" minlength="1" maxlength="7" pattern="[0-9a-zA-Z]{1,7}"
-                    placeholder="Enter the Captcha here" required>
+                    placeholder="Enter the Captcha here" required onkeyup="this.value=this.value.toUpperCase()">
                 <input type="submit" name="" value="Log in">
                 <a href="../html/signup.php">Dont have an Account? Sign up</a><br>
                 <a href="forgot.php">Forgot Password? Click Here!</a>
@@ -221,6 +221,7 @@ if ($link === false) {
     </div>
     <script src='../js/gen_loader.js'></script>
 </footer>
+
 </html>
 
 <?php
@@ -272,7 +273,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             // Display an error message if password is not valid
                             $password_err = "The password you entered was not valid.";
                             echo '<script>
-                            alert("Wrong password entered");
+                                alert("Wrong password entered");
                             </script>';
                             $_SESSION = array();
 
@@ -284,8 +285,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     // Display an error message if username doesn't exist
                     $username_err = "No account found with that username.";
                     echo '<script>
-                            alert("No account found with that username.");
-                            </script>';
+                        alert("No account found with that username.");
+                    </script>';
                     $_SESSION = array();
 
                     // Destroy the session.
@@ -302,4 +303,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 ?>
-
