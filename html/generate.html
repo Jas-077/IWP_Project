@@ -442,23 +442,29 @@
                 opacity: 1;
             }
         }
+        #caption
+        {
+            margin-left: 18%;
+            margin-top: 3%;
+            margin-bottom: 3%;
+        }
     </style>
 </head>
 
-<body>
+<body onload="change()">
     <header>
         <div class="nav-container">
             <div class="navbar">
                 <img src="../images/logo.PNG" alt="logo" width="100">
                 <ul>
-                    <a href="index.php">
+                    <a href="homepage.html">
 
                         <li>Home</li>
                     </a>
                     <a href="safe.html">
                         <li>Locker</li>
                     </a>
-                    <a href="logout.php">
+                    <a href="logout.html" id="">
                         <li>Logout</li>
                     </a>
                 </ul>
@@ -486,7 +492,7 @@
                 <input type="text" placeholder="Username" name="d_username" required><br>
                 <p style="color: #66fcf1;font-size: 24px;">Enter Password of your choice here or press the generate
                     button</p>
-                <input type="text" minlength="8" placeholder="Enter password here" name="password"><br>
+                <input type="text" minlength="8" placeholder="Enter password here" name="password" onkeyup="send()"><br>
                 <input type="button" onclick="gen()" id="but1" value="Generate"><br><br>
                 <div class="slidecontainer">
                     <input type="range" min="8" max="20" value="14" class="slider" id="myRange">
@@ -498,15 +504,9 @@
                 <input type="text" name="pass2" id="pass2" value="Prt$%s52+hK:54" readonly></input>
                 <br>
                 <p id="strong">Password strength is</p>
-                <table id="tab">
-                    <caption style="color: rgb(4, 238, 255);font-size: 16px;">Medium</caption>
-                    <tr>
-                        <td style="background-color:rgb(255, 174, 0)"></td>
-                        <td style="background-color:rgb(255, 174, 0)"></td>
-                        <td style="background-color:rgb(255, 174, 0)"></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                <p style="color: rgb(4, 238, 255);font-size: 16px;" id="caption"></p>
+                <table >
+                    <tr id="tab"></tr>
                 </table>
                 <br>
                 <input type="submit" value="ADD" id="add">
@@ -533,7 +533,7 @@
             a.style.display = 'flex';
             b.style.display = "block";
             c.style.display = "block";
-            f.style.display = "block";
+            f.style.display = "none";
             d.style.display = "block";
             e[0].style.display = "block";
         }
@@ -550,6 +550,8 @@
                 k += j[Math.floor(Math.random() * j.length)];
             }
             c.value = k;
+            strength(c.value,slider.value);
+            document.forms["form1"]["password"].value=c.value;
         }
     </script>
 </body>
@@ -564,3 +566,149 @@
 </footer>
 
 </html>
+<script>
+    var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{14,})");
+    var vstrongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{16,})");
+    var mediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{12,})");
+    var weekRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{9,})");
+    var vweekRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{1,8})");
+    var col=0;
+    var p="";
+    function send()
+    {
+        var password=document.forms["form1"]["password"].value;
+        password=password.trim();
+        var len=password.length;
+        strength(password,len)
+    }
+    function strength(password,len)
+    {
+        var table=document.getElementById("tab");
+        table.innerHTML="";
+        if(len==0)
+        {
+            document.getElementById("strong").style.display="none";
+            document.getElementById("caption").style.display="none";
+            return;
+        }
+        if(len<=8)
+        {
+            if(vweekRegex.test(password))
+            {
+                col=2;
+                p="Weak";
+            }
+            else
+            {
+                col=1;
+                p="Very Weak";
+            }
+        }
+        else if(len>8 && len<12)
+        {
+            if(weekRegex.test(password))
+            {
+                col=2;
+                p="Weak";
+            }
+            else
+            {
+                col=1;
+                p="Very Weak";
+            }
+        }
+        else if(len>=12 && len<14)
+        {
+            if(mediumRegex.test(password))
+            {
+                col=3;
+                p="Medium";
+            }
+            else
+            {
+                col=2;
+                p="Weak";
+            }
+        }
+        else if(len>=14 && len<16)
+        {
+            if(strongRegex.test(password))
+            {
+                col=4;
+                p="Strong";
+            }
+            else
+            {
+                col=3;
+                p="Medium";
+            }
+        }
+        else if(len>=16)
+        {
+            if(strongRegex.test(password))
+            {
+                col=5;
+                p="Very Strong";
+            }
+            else
+            {
+                col=4;
+                p="Strong";
+            }
+        }
+        for(var i=0;i<col;i++)
+        {
+            table.innerHTML+="<td class='str'></td>";
+        }
+        document.getElementById("strong").style.display="block";
+        document.getElementById("caption").style.display="block";
+        document.getElementById("caption").innerHTML=p;
+        var color=document.getElementsByClassName("str");
+        if(p=="Very Weak")
+        {
+            for(var i=0;i<color.length;i++)
+            {
+                color[i].style.backgroundColor="rgb(173, 10, 37)";
+            }
+        }
+        else if(p=="Weak")
+        {
+            for(var i=0;i<color.length;i++)
+            {
+                color[i].style.backgroundColor="rgb(252, 94, 55)";
+            }
+        }
+        else if(p=="Medium")
+        {
+            for(var i=0;i<color.length;i++)
+            {
+                color[i].style.backgroundColor="rgb(255, 174, 0)";
+            }
+        }
+        else if(p=="Strong")
+        {
+            for(var i=0;i<color.length;i++)
+            {
+                color[i].style.backgroundColor="rgb(5, 172, 5)";
+            }
+        }
+        else if(p=="Very Strong")
+        {
+            for(var i=0;i<color.length;i++)
+            {
+                color[i].style.backgroundColor="rgb(0, 255, 0)";
+            }
+        }
+    }
+    function change()
+    {
+        var pass=document.getElementById("pass2");
+        var z = Math.floor((Math.random() * (15 - 13)) + 13);
+    var r = "01234567890123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ ~`!@#$%^&*()_-+={[}]|\:;'<,>.?/";
+    var t = "";
+    for (var i = 0; i < 10; i++) {
+        t += r[Math.floor(Math.random() * r.length)];
+    }
+    pass.value=t;
+    }
+</script>

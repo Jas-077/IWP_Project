@@ -1,7 +1,7 @@
 <?php
 define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'root');
-define('DB_PASSWORD', '');
+define('DB_PASSWORD', 'root');
 define('DB_NAME', 'lock');
 
 /* Attempt to connect to MySQL database */
@@ -28,7 +28,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     mysqli_query($link, $sql1);
     $sql3 = "DELETE FROM otp_con WHERE mail='$mail'";
     mysqli_query($link, $sql3);
-    header("location: login.php?sucessfull");
+    echo '<script>
+    alert("Password Successfully Changed 👍. Pls login with the new credentials.");
+    location.href="login.php";
+    </script>';
 }
 ?>
 <html>

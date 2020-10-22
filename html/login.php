@@ -10,7 +10,7 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
 
 define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'root');
-define('DB_PASSWORD', '');
+define('DB_PASSWORD', 'root');
 define('DB_NAME', 'lock');
 
 /* Attempt to connect to MySQL database */
@@ -267,7 +267,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                             // Redirect user to welcome page
                             //header("location: login.php?successfull");
-
                             echo "<script>myFunction()</script>";
                         } else {
                             // Display an error message if password is not valid

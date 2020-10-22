@@ -1,7 +1,7 @@
 <?php
 define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'root');
-define('DB_PASSWORD', '');
+define('DB_PASSWORD', 'root');
 define('DB_NAME', 'lock');
 
 /* Attempt to connect to MySQL database */
@@ -50,7 +50,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //$pass2 = $pass;
     //$sql = "SELECT * FROM lock.user WHERE username = ?;";
     $sql1->execute();
-    header("location: login.php");
+    echo '<script>
+    alert("Successful Registration!. Welcome to Lock&Key😀");
+    location.href="login.php";
+    </script>';
 }
 ?>
 <html>

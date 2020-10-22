@@ -2,7 +2,7 @@
 
 define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'root');
-define('DB_PASSWORD', '');
+define('DB_PASSWORD', 'root');
 define('DB_NAME', 'lock');
 
 session_start();
@@ -13,7 +13,8 @@ $con = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     //put the filepath in your system
-    $fname="C:/xampp/htdocs\Project/files/".$user.".csv";
+    //$fname="C:/xampp/htdocs\Project/files/".$user.".csv";
+    $fname="/Applications/MAMP/htdocs/git_files1/files/".$user.".csv";
     $file=fopen($fname,"w") or die ("unable to find the file !");
     fputcsv($file,array("Domain name","Username","Password"));
 
